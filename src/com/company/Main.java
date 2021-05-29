@@ -17,8 +17,8 @@ public class Main {
         //определяем первый элемент регистра
         reg.set(0, M);
 
-        try(FileInputStream fileIn = new FileInputStream("text.txt");
-            FileOutputStream fileOut = new FileOutputStream("textDecr.txt")){
+        try(FileInputStream fileIn = new FileInputStream("C:\\Users\\Sanya\\Desktop\\Information_Theory_4\\text.txt");
+            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\Sanya\\Desktop\\Information_Theory_4\\textDecr.txt")){
             byte[] buff = new byte[fileIn.available()];
             fileIn.read(buff, 0, fileIn.available());
 
@@ -34,18 +34,19 @@ public class Main {
         }
 
         reg.set(0, M);
-        try (FileOutputStream fOut = new FileOutputStream("textDecr.txt");
-             FileInputStream fIn = new FileInputStream("textEnc.txt")) {
+        try (FileInputStream fileIn = new FileInputStream("C:\\Users\\Sanya\\Desktop\\Information_Theory_4\\textDecr.txt");
+             FileOutputStream fileOut = new FileOutputStream("C:\\Users\\Sanya\\Desktop\\Information_Theory_4\\textEnc.txt")) {
 
-            byte[] buffEnc = new byte[fIn.available()];
-            fIn.read(buffEnc, 0, fIn.available());
+            byte[] buffEnc = new byte[fileIn.available()];
+            fileIn.read(buffEnc, 0, fileIn.available());
 
             for (int i = 0; i < buffEnc.length; i++) {
                 buffEnc[i] = (byte) (buffEnc[i] ^ generateKeySet(reg, M));
             }
 
-            fOut.write(buffEnc);
+            fileOut.write(buffEnc);
             System.out.println("Decrypted succeed!");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
